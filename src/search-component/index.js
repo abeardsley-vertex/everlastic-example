@@ -1,5 +1,4 @@
 import React from "react";
-//import randomWord from '../random-word-by-letter'
 
 import './search.css';
 
@@ -10,20 +9,35 @@ export default class Search extends React.Component {
         super(props);
 
         this.state = {
-            suggestions: []
+            suggestions: [],
+            searchtimeout: null
         }
 
         this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
     handleSearchChange(event) {
+        clearTimeout(this.state.searchTimeout)
+
         var value = event.target.value;
 
-        if (!value || value.length <= 0) return;
+        if (!value || value.length <= 0)
+        {
+            this.setState({ suggestions: [] })
+            return;
+        };
 
-        //this.setState({search: value});  
-        console.log("search for " + value);
-        this.getSuggestions(value);
+        console.log('====>', value);
+        
+        this.setState({
+            searchTimeout: setTimeout(() => {
+                this.getSuggestions(value);
+              }, 300)
+        });
+        
+
+
+        
     }
 
     componentDidMount()
@@ -68,8 +82,11 @@ export default class Search extends React.Component {
 
         return (
             <div className="Search">
-                <h2>Everlastic Search in React</h2>
-                <input type="text" value={this.state.search} onChange={this.handleSearchChange} />
+                <h2>Everlastic Search Suggestions in React</h2>
+                <p>
+                    Start typing a search to get search suggestions.
+                </p>
+                <input type="text" placeholder="Search..." value={this.state.search} onChange={this.handleSearchChange} />
                 {
                     (suggestions && suggestions.length > 0) &&
                     <div>
