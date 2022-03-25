@@ -27,6 +27,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           npm install
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/abeardsley-vertex/everlastic-example.git
           npm run deploy
         env:
            CI: false
