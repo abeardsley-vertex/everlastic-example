@@ -27,22 +27,12 @@ export default class Search extends React.Component {
             return;
         };
 
-        console.log('====>', value);
-        
         this.setState({
+            //debounce easy mode - prevent sending request on every keystroke unless N milliseconds have gone by
             searchTimeout: setTimeout(() => {
                 this.getSuggestions(value);
               }, 300)
         });
-        
-
-
-        
-    }
-
-    componentDidMount()
-    {
-        //this.makeWords();
     }
 
     getSuggestions(value)
@@ -55,34 +45,22 @@ export default class Search extends React.Component {
           (result) => {
               console.log("Got suggestions:", result);
               this.setState({suggestions: result});
-
-            // this.setState({
-            //   isLoaded: true,
-            //   items: result.items
-            // });
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
           // exceptions from actual bugs in components.
           (error) => {
-              console.Console.og("ERROR getting suggestions:", error);
-            // this.setState({
-            //   isLoaded: true,
-            //   error
-            // });
+              console.log("ERROR getting suggestions:", error);
           }
         )
     }
 
     render() {
         const { suggestions } = this.state;
-        
-        let everlasticSearchURl = "https://everlastic.net/api/search/?includeKeymatches=true&page=1&pageSize=20&index=www.austinregionalclinic.com&highlightPre=%3Cstrong%3E&highlightPost=%3C/strong%3E&limitKeymatchesToStartsWith=true&q=";
-
 
         return (
             <div className="Search">
-                <h2>Everlastic Search Suggestions in React</h2>
+                <h2>Everlastic Search Suggestions</h2>
                 <p>
                     Start typing a search to get search suggestions.
                 </p>
@@ -90,12 +68,12 @@ export default class Search extends React.Component {
                 {
                     (suggestions && suggestions.length > 0) &&
                     <div>
-                         <ul>
-                        {suggestions.map(suggestion => (
-                            <li key={suggestion}>
-                                {suggestion}
-                            </li>
-                        ))}
+                        <ul>
+                            {suggestions.map(suggestion => (
+                                <li key={suggestion}>
+                                    {suggestion}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 }
