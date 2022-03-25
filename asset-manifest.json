@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/everlastic-example/static/css/main.20fe8f2f.css",
-    "main.js": "/everlastic-example/static/js/main.7bff657c.js",
+    "main.js": "/everlastic-example/static/js/main.4cf1bad9.js",
     "static/js/787.44457fee.chunk.js": "/everlastic-example/static/js/787.44457fee.chunk.js",
     "static/media/logo.svg": "/everlastic-example/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/everlastic-example/index.html",
     "main.20fe8f2f.css.map": "/everlastic-example/static/css/main.20fe8f2f.css.map",
-    "main.7bff657c.js.map": "/everlastic-example/static/js/main.7bff657c.js.map",
+    "main.4cf1bad9.js.map": "/everlastic-example/static/js/main.4cf1bad9.js.map",
     "787.44457fee.chunk.js.map": "/everlastic-example/static/js/787.44457fee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.20fe8f2f.css",
-    "static/js/main.7bff657c.js"
+    "static/js/main.4cf1bad9.js"
   ]
 }
