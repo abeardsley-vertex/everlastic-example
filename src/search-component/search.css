@@ -48,3 +48,8 @@ input{
 .searchResultDetails{
     color : #999;
 }
+
+.searching{
+    font-size : .7em;
+    color : #999;
+}

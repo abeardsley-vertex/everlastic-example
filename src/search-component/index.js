@@ -12,7 +12,8 @@ export default class Search extends React.Component {
             search: '',
             suggestions: [],
             searchtimeout: null,
-            results: {}
+            results: {},
+            isSearching: false
         }
 
         this.handleSearchEnter = this.handleSearchEnter.bind(this);
@@ -56,21 +57,30 @@ export default class Search extends React.Component {
         console.log("do search for: ", value);
         this.setState({ 
             search: value,
-            suggestions: [] });
+            suggestions: [],
+            results: {},
+            isSearching: true
+        });
 
         let searchUrl= "https://everlastic.net/api/search/?includeKeymatches=true&page=1&pageSize=20&index=www.austinregionalclinic.com&highlightPre=%3Cstrong%3E&highlightPost=%3C/strong%3E&limitKeymatchesToStartsWith=true&q=" + value;
         fetch(searchUrl)
         .then(res => res.json())
         .then(
           (result) => {
-              console.log("Got results:", result);
-              this.setState({results: result});
+              this.setState({
+                  results: result,
+                  isSearching: false
+            });
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
           // exceptions from actual bugs in components. 
           (error) => {
               console.log("ERROR getting suggestions:", error);
+              this.setState({
+                results: {},
+                isSearching: false
+          });
           }
         )
     }
@@ -96,7 +106,7 @@ export default class Search extends React.Component {
     }
 
     render() {
-        const { suggestions, results } = this.state;
+        const { suggestions, results, isSearching } = this.state;
 
         return (
             <div className="Search">
@@ -113,6 +123,11 @@ export default class Search extends React.Component {
                             ))}
                         </ul>
                     </div>
+                }
+
+                {
+                    isSearching &&
+                    <div className="searching">Searching...</div>
                 }
 
                 {           
