@@ -48,7 +48,7 @@ export default class Search extends React.Component {
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
+          // exceptions from actual bugs in components. 
           (error) => {
               console.log("ERROR getting suggestions:", error);
           }
