@@ -15,8 +15,16 @@ export default class Search extends React.Component {
             results: {}
         }
 
+        this.handleSearchEnter = this.handleSearchEnter.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
         this.doSearch = this.doSearch.bind(this);
+    }
+
+    handleSearchEnter(event) {
+        var value = event.target.value;
+        if(value && value.length > 0 && event.keyCode == 13){
+            this.doSearch(value);
+         }
     }
 
     handleSearchChange(event) {
@@ -93,7 +101,7 @@ export default class Search extends React.Component {
         return (
             <div className="Search">
                 <h2>Everlastic Search - ARC</h2>
-                <input type="text" placeholder="Search..." value={this.state.search} onChange={this.handleSearchChange} />
+                <input type="text" placeholder="Search..." value={this.state.search} onChange={this.handleSearchChange} onKeyUp={this.handleSearchEnter} />
                 {
                     (suggestions && suggestions.length > 0) &&
                     <div className="suggestionsContainer">
