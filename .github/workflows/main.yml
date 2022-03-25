@@ -31,3 +31,4 @@ jobs:
           npm run deploy
         env:
            CI: false
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
